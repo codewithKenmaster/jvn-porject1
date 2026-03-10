@@ -1,0 +1,10 @@
+version: "3.9"  # Compose file version; newer versions support more features.
+
+services:        # Define all containers (services) in this project
+  app:           # Name of this service (you can use any name)
+    build: .     # Build the Docker image using the Dockerfile in the current directory
+    container_name: jvn-project-1 # gives your container a  name
+    ports:
+      - "3010:3010"   # Map host port 3010 → container port 3010
+                      # left side, PC port :}, right side, port the app listens to inside container
+    restart: unless-stopped  # Automatically restart the container if it crashes, unless you manually stop it
