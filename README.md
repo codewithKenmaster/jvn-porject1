@@ -15,6 +15,23 @@ It provides important metrics like:
 
 This helps developers make informed decisions before using libraries.
 
+## Project Structure
+
+npm-dependency-inspector/
+│
+├─ public/ # Frontend HTML and static files
+│ └─ index.html
+├─ .github/
+│ └─ workflows/
+│ └─ ci.yml # GitHub Actions workflow
+├─ .husky/
+│ └─ pre-commit # Pre-commit hook
+├─ server.js # Express backend
+├─ Dockerfile # Multi-stage Dockerfile
+├─ docker-compose.yml # Docker Compose config
+├─ package.json
+└─ README.md
+
 ---
 
 ## Run Locally (Docker)

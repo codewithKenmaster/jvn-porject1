@@ -36,6 +36,7 @@ app.get("/api/package/:name", async (req, res) => {
       report,
     ); /* response data will be converted to JSON format and will be pass in to the report variable*/
   } catch (error) /*catch error logic if any */ {
+    console.error(error); // <--- if not added, eslint will complain :)
     res.status(404).json({ error: " Package not found" });
   }
 });
