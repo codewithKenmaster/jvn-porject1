@@ -2,9 +2,11 @@
   "name": "npm-dependecy-inspector",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"scripts": {
+  "start": "node server.js",
+  "test": "echo \"No tests yet\" && exit 0",
+  "lint": "eslint . --max-warnings=0"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
