@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>NPM Package Dependency Inspector</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>NPM Package Scorecard</h2>
+
+    <input id="pkg" placeholder="Enter NPM package name">
+
+    <button onclick="check()">Analyze</button>
+
+    <div id="result"></div>
+
+    <script>
+
+        async function check() {
+
+            const name = document.getElementById("pkg").value.trim()
+
+            if (!name) {
+                document.getElementById("result").innerHTML = "<p>Please enter a package name</p>"
+                return
+            }
+
+            try {
+
+                const response = await fetch(`/api/package/${name}`)
+                const data = await response.json()
+
+                if (data.error) {
+                    document.getElementById("result").innerHTML = `<p style="color:red">${data.error}</p>`
+                    return
+                }
+
+                document.getElementById("result").innerHTML = `
+    <div class="card">
+    <h3>${data.name}</h3>
+    <p>Version: ${data.version}</p>
+    <p>License: ${data.license}</p>
+    <p>Dependencies: ${data.dependencies}</p>
+    <p>Unpacked Size: ${data.unpackedSize}</p>
+    <p>Weekly Downloads: ${data.weeklyDownloads}</p>
+    <p>Last Publish: ${data.lastPublish}</p>
+    </div>
+    `
+
+            } catch (err) {
+
+                document.getElementById("result").innerHTML =
+                    "<p style='color:red'>Error contacting server</p>"
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

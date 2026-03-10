@@ -1,0 +1,11 @@
+# .husky/pre-commit
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Running pre-commit checks..."
+
+# Run npm audit
+npm audit --audit-level=high
+
+# Run ESLint
+npx eslint . --max-warnings=0
