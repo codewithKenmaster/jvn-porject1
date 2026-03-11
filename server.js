@@ -1,5 +1,5 @@
-const express = require("express");
-const axios = require("axios");
+import express from "express";
+import axios from "axios";
 
 const app = express();
 const PORT = 3010; /*I am using port 3010 due to I have a container running in my computer using that port :) */

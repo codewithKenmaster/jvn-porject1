@@ -1,4 +1,3 @@
-version: "3.9"  # Docker Compose file version; newer versions support more features.
 
 services:        # This section defines all the containers your project will run
   app:           # Name of the service (you can name it anything meaningful)
