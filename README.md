@@ -34,6 +34,15 @@ npm-dependency-inspector/
 
 ---
 
+## Install Dependencies
+
+This project does not include the `node_modules` directory because it is ignored in the `.gitignore` file.
+
+To install all required dependencies listed in `package.json`, run the following command in the project directory:
+
+````bash
+npm install
+
 ## Run Locally (Docker)
 
 The project is fully containerized. To run locally:
@@ -46,4 +55,4 @@ docker-compose up --build
 docker-compose up -d #run docker detached mode (so you can continue using the terminal to other functions)
 docker-compose down # will stop the container
 docker exec -it <containerName> sh # will let shell into the container (use for debuggin purposes)
-```
+````
