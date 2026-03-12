@@ -1,28 +1,30 @@
-# Image
+# Stage 1: Build
 FROM node:22-alpine AS build
 
-# Working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json first for caching
 COPY package*.json ./
 
-# dependencies installation
-RUN npm install --production
+# Install dependencies 
+RUN npm ci
 
-# copy all the project file
+# check that express exists (for main branch)
+RUN node -e "import('express').then(()=>console.log('Express OK')).catch(err=>{console.error(err); process.exit(1)})"
+
+# Copy all project files
 COPY . .
 
-# Stage 2: Production stage
+# Stage 2: Production
 FROM node:22-alpine
 
 WORKDIR /app
 
-# Copy node modules and app from build stage
+# Copy app and node_modules from build stage
 COPY --from=build /app .
 
-# Expose the port your app runs on
+# Expose the app port
 EXPOSE 3010
 
-# Start the app
+# Start the server
 CMD ["node", "server.js"]
